@@ -14,35 +14,37 @@ import java.util.UUID;
 @IdClass(ProductId.class)
 public class Product {
 
-    @Id // <- PARTE 1 DA CHAVE
+    // --- Chave Composta ---
+    @Id
     @Column(name = "tenant_id")
     private UUID tenantId;
 
-    @Id // <- PARTE 2 DA CHAVE
+    @Id
     private String sku;
 
+    // --- Dados Principais ---
     @Column(nullable = false)
     private String name;
 
     private String brand;
     private String category;
 
+    @Column(nullable = false)
+    private String status = "ACTIVE";
+
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "attributes_json")
     private Map<String, Object> attributes;
 
-    @Column(nullable = false)
-    private String status = "ACTIVE";
-
-    // Correção: Anotações saíram do construtor e vieram para o campo
+    // --- Auditoria ---
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
 
+    // --- Construtores ---
     public Product() {
-
     }
 
     public Product(UUID tenantId, String sku, String name) {
@@ -51,6 +53,7 @@ public class Product {
         this.name = name;
     }
 
+    // --- Getters e Setters ---
     public UUID getTenantId() {
         return tenantId;
     }
@@ -91,14 +94,6 @@ public class Product {
         this.category = category;
     }
 
-    public Map<String, Object> getAttributes() {
-        return attributes;
-    }
-
-    public void setAttributes(Map<String, Object> attributes) {
-        this.attributes = attributes;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -107,10 +102,17 @@ public class Product {
         this.status = status;
     }
 
+    public Map<String, Object> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Map<String, Object> attributes) {
+        this.attributes = attributes;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
-    // Geralmente não temos setCreatedAt pois é automático
 
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
@@ -120,7 +122,6 @@ public class Product {
         this.updatedAt = updatedAt;
     }
 
-    // Método de callback para atualizar data antes de update (Opcional, mas útil)
     @PreUpdate
     public void preUpdate() {
         this.updatedAt = LocalDateTime.now();
