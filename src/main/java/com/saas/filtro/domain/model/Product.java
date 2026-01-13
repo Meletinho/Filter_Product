@@ -43,7 +43,8 @@ public class Product {
 
     private LocalDateTime updatedAt;
 
-    // --- Construtores ---
+    // Construtores
+    // Tinha refeito a ordem de cada anotação para não dar erro de compilação kk
     public Product() {
     }
 
