@@ -2,7 +2,7 @@
 
 > **SaaS de Inteligência de Varejo Multi-Tenant & Filtrador de Oportunidades**
 
-## 📋 Resumo Executivo
+## 📋 Resumo da Ópera
 
 O **Filter Product** é uma plataforma projetada para alta escalabilidade e inteligência de negócios. Embora o conceito inicial remeta a um "filtrador", a arquitetura revela um sistema robusto de **Retail Intelligence**, capaz de ingestão massiva de dados, cálculo de lucratividade real, *forecasting* de demanda e geração automatizada de recomendações.
 
