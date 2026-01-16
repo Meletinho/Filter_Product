@@ -11,7 +11,6 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -49,7 +48,6 @@ public class InventorySnapshot {
 
     // Relacionamento com Product
     @ManyToOne
-    @MapsId("tenantId")
     @JoinColumns({
             @JoinColumn(name = "tenant_id", referencedColumnName = "tenant_id", insertable = false, updatable = false),
             @JoinColumn(name = "sku", referencedColumnName = "sku", insertable = false, updatable = false)
